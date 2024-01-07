@@ -1,0 +1,23 @@
+1. **Analyse des données du marché boursier (`Smarket`)** :
+    - Exploration des données, résumé des statistiques, et visualisation.
+    - Application de la régression logistique pour prédire la direction du marché boursier en fonction de plusieurs variables explicatives.
+    - Utilisation des probabilités prédites pour classer les directions du marché.
+
+2. **Application de LDA et QDA sur `Smarket`** :
+    - Ajustement de modèles LDA et QDA pour prédire la direction du marché.
+    - Évaluation des performances des modèles LDA et QDA.
+
+3. **Utilisation de KNN sur `Smarket`** :
+    - Utilisation de la méthode des k plus proches voisins (KNN) pour prédire la direction du marché.
+    - Évaluation des performances du modèle KNN.
+
+4. **Analyse de l'ensemble de données `iris`** :
+    - Exploration des données et visualisation.
+    - Application de LDA et QDA pour classer les fleurs d'iris en fonction de leurs caractéristiques.
+    - Évaluation des performances des modèles LDA et QDA sur les données d'entraînement et de test.
+    - Visualisation des résultats à l'aide de graphiques exploratoires.
+
+5. **Analyse de précision** :
+    - Calcul de la précision des prédictions pour chaque méthode (LDA, QDA) et pour différentes configurations (utilisation de données de formation, validation croisée, etc.).
+
+En somme, ce script R montre comment appliquer et évaluer plusieurs techniques d'apprentissage supervisé sur différents ensembles de données. Il illustre également l'importance de l'évaluation des performances des modèles à l'aide de différentes métriques pour choisir la meilleure méthode ou configuration pour un problème donné.
