@@ -1,1 +1,106 @@
+Ce script R effectue diverses opérations liées à la régression linéaire en utilisant le jeu de données Boston. Voici une explication étape par étape du code :
 
+### Installation des Packages
+```R
+# install.packages("ISLR2") # Bibliothèque de compagnon de manuel
+# install.packages("MPV")   # Pour la fonction PRESS
+# install.packages("car")   # Pour la fonction VIF
+# install.packages("FNN")   # Pour knn
+# install.packages("MASS")
+# install.packages("caret") # Classification et Régression
+```
+Ce sont des commandes pour installer les packages nécessaires.
+
+### Chargement des Bibliothèques
+```R
+library(ISLR2)
+library(MASS)
+library(MPV) # Pour la fonction PRESS
+library(car) # Pour la fonction VIF
+library(FNN)
+```
+Ces commandes chargent les bibliothèques nécessaires pour exécuter différentes fonctions dans le script.
+
+### Chargement et Exploration des Données
+```R
+?Boston
+boston.dt = Boston
+dim(boston.dt)
+names(boston.dt)
+```
+Charge les données du jeu de données Boston et explore ses propriétés.
+
+### Conversion des Variables et Exploration des Données
+```R
+boston.dt$chas = as.factor(boston.dt$chas)
+boston.dt$rad = as.factor(boston.dt$rad)
+summary(boston.dt)
+```
+Convertit certaines variables numériques en variables catégoriques et explore les données.
+
+### Modèle de Régression Linéaire Simple
+```R
+boston.lm = lm(medv ~ lstat, data = boston.dt)
+summary(boston.lm)
+```
+Ajuste un modèle de régression linéaire simple entre `medv` (variable dépendante) et `lstat` (variable indépendante).
+
+### Modèle de Régression Quadratique
+```R
+boston.qad = lm(medv ~ lstat + I(lstat^2), boston.dt)
+summary(boston.qad)
+```
+Ajuste un modèle de régression quadratique.
+
+### Modèle de Régression Multiple
+```R
+boston.lm.all = lm(medv ~ . + I(lstat^2) - indus, boston.dt)
+summary(boston.lm.all)
+```
+Ajuste un modèle de régression multiple avec toutes les variables.
+
+### Exploration des Résidus
+```R
+hist(boston.lm$residuals)
+```
+Explore les résidus du modèle.
+
+### Calcul du Coefficient de Détermination (R²)
+```R
+sse.all = sum(boston.lm.all$residuals^2)
+sst = sum((boston.dt$medv - mean(boston.dt$medv))^2)
+r2.all = 1 - sse.all / sst
+r2.all
+```
+Calcule le coefficient de détermination pour le modèle de régression multiple.
+
+### Prédictions et Graphiques
+```R
+predict(boston.lm, data.frame(lstat = c(5, 10, 15)))
+plot(boston.dt$lstat, boston.dt$medv)
+points(boston.dt$lstat, boston.lm$fitted.values, col = "blue")
+abline(boston.lm, col = 'red')
+```
+Effectue des prédictions et trace un graphique avec le modèle de régression linéaire simple.
+
+### Termes d'Interaction
+```R
+boston.lm.inter = lm(medv ~ lstat + zn + rm + lstat:zn, data = boston.dt)
+summary(boston.lm.inter)
+```
+Ajuste un modèle avec des termes d'interaction.
+
+### Vérification de la Multicolinéarité
+```R
+vif(boston.lm.all)
+```
+Calcule le facteur d'inflation de la variance pour détecter la multicolinéarité.
+
+### PRESS et Calcul du Coefficient de Détermination Ajusté (R²)
+```R
+press.boston.lm = PRESS(boston.lm.all)
+1 - press.boston.lm / sst
+```
+Calcule la somme des erreurs quadratiques prévisionnelles (PRESS) et le coefficient de détermination ajusté.
+
+Ces étapes couvrent divers aspects de l'analyse de la régression linéaire, de la conversion des types de variables à l'ajustement de modèles complexes et à l'évaluation de la performance du modèle.
