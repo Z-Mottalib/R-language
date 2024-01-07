@@ -1,0 +1,34 @@
+Ce code R effectue plusieurs opérations d'analyse de données, en particulier l'application de techniques 
+d'apprentissage automatique sur un ensemble de données appelé "Sonar". Voici un résumé des principales étapes 
+et fonctions utilisées dans le script :
+
+1. **Chargement des données** : Les données sont chargées à partir de la bibliothèque `mlbench` et les premières 
+colonnes sont inspectées.
+
+2. **Division des données en ensembles d'entraînement et de test** : 
+    - Utilisation de la fonction `createDataPartition` pour diviser les données en un ensemble d'entraînement et 
+un ensemble de test.
+    - 75% des données sont utilisées pour l'entraînement et le reste pour le test.
+
+3. **Paramétrage de l'entraînement** : 
+    - Utilisation de `trainControl` pour spécifier le type de validation croisée et d'autres paramètres pour 
+l'entraînement des modèles.
+    - Deux modèles sont entraînés : un modèle de gradient boosting machine (GBM) et un modèle de forêt aléatoire 
+(Random Forest). 
+
+4. **Tuning des hyperparamètres** :
+    - Définition d'une grille de paramètres pour optimiser les modèles GBM et Random Forest.
+    - Entraînement des modèles en utilisant cette grille pour trouver les meilleurs hyperparamètres.
+
+5. **Évaluation des modèles** :
+    - Utilisation de différentes métriques pour évaluer la performance des modèles, telles que le Kappa pour GBM 
+et la Sensibilité pour Random Forest.
+    - Utilisation de la courbe ROC pour évaluer le modèle GBM en spécifiant l'optimisation sur cette métrique.
+
+6. **Visualisation** :
+    - Utilisation de diverses fonctions de visualisation pour représenter les résultats, notamment avec `plot` et `ggplot`.
+
+En résumé, ce script R montre comment appliquer des techniques d'apprentissage automatique pour entraîner, 
+tuner et évaluer des modèles prédictifs sur un ensemble de données. Il utilise la bibliothèque `caret`,
+qui est un outil puissant pour simplifier et standardiser le processus d'entraînement et d'évaluation des modèles 
+d'apprentissage automatique.
